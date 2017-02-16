@@ -23,4 +23,5 @@ def map(request):
     # Pass variables to the template via the context dictionary
     context = {'map_options': map_options}
     #herl
+    #sdfg
     return render(request, 'lfhazard/map.html', context)
