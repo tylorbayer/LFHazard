@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e458a064-8156-481e-9223-6ef3b2a2e18c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/lfhazard/controllers.py" afterPath="$PROJECT_DIR$/tethysapp/lfhazard/controllers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/lfhazard/templates/lfhazard/home.html" afterPath="$PROJECT_DIR$/tethysapp/lfhazard/templates/lfhazard/home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../tethysapp-modflow_cloud/tethysapp/modflow_cloud/controllers.py" afterPath="$PROJECT_DIR$/../tethysapp-modflow_cloud/tethysapp/modflow_cloud/controllers.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../tethysapp-modflow_cloud/tethysapp/modflow_cloud/public/css/map.css" afterPath="$PROJECT_DIR$/../tethysapp-modflow_cloud/tethysapp/modflow_cloud/public/css/map.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../tethysapp-modflow_cloud/tethysapp/modflow_cloud/public/js/main.js" afterPath="$PROJECT_DIR$/../tethysapp-modflow_cloud/tethysapp/modflow_cloud/public/js/main.js" />
@@ -31,8 +30,8 @@
       <file leaf-file-name="controllers.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tethysapp/lfhazard/controllers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+            <state relative-caret-position="345">
+              <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -624,8 +623,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tethysapp/lfhazard/controllers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+        <state relative-caret-position="345">
+          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
