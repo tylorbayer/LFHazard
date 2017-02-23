@@ -1,4 +1,5 @@
 from tethys_sdk.base import TethysAppBase, url_map_maker
+from tethys_sdk.stores import PersistentStore
 
 
 class LiquifactionHazardApp(TethysAppBase):
@@ -27,6 +28,24 @@ class LiquifactionHazardApp(TethysAppBase):
         url_maps = (UrlMap(name='home',
                            url='lfhazard',
                            controller='lfhazard.controllers.home'),
+                    UrlMap(name='map',
+                           url='lfhazard/map',
+                           controller='lfhazard.controllers.map'),
+                    UrlMap(name='echo_name',
+                           url='lfhazard/echo-name',
+                           controller='lfhazard.controllers.echo_name'),
         )
 
         return url_maps
+
+    def persistent_stores(self):
+        """
+        Add one or more persistent stores
+        """
+        stores = (PersistentStore(name='stream_gage_db',
+                                  initializer='lfhazard.init_stores.init_stream_gage_db',
+                                  spatial=True
+                                  ),
+                  )
+
+        return stores

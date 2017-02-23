@@ -1,0 +1,32 @@
+{% extends "lfhazard/base.html" %}
+
+{% load tethys_gizmos %}
+
+{% block app_navigation_items %}
+  <form method="post">
+      {% csrf_token %}
+      {% gizmo select_input select_state %}
+      {% gizmo text_input text_input_lat %} 
+      {% gizmo text_input text_input_lon %}
+      {% gizmo select_input select_modelYear %}
+      {% gizmo select_input select_returnPeriod %}
+      <input type="submit" name="name-form-submit" class="btn btn-default">
+  </form>
+
+  {% if lat and lon %}
+    <h1>State: {{ state }}</h1>
+    <h1>Lat: {{ lat }}  Lon: {{ lon }}</h1>
+    <h2>Model Year: {{ modelYear }}</h2>
+    <h3>Return Period: {{ returnPeriod }}
+  {% endif %}
+{% endblock %}
+
+{% block app_content %}
+  <h1>Liquifaction Hazard Map</h1>
+
+  {% gizmo map_view map_options %}
+{% endblock %}
+
+{% block app_actions %}
+  <a href="{% url 'lfhazard:home' %}" class="btn btn-default">Back</a>
+{% endblock %}

@@ -1,11 +1,14 @@
 {% extends "lfhazard/base.html" %}
 
+{% block app_navigation_items %}
+  <li><a href="{% url 'lfhazard:echo_name' %}">Name Echoer</a></li>
+{% endblock %}
+
 {% block app_content %}
-  <h1>Welcome!</h1>
+  <h1>LFHazard!</h1>
   <p>Congratulations on creating a new Tethys app!</p>
 {% endblock %}
 
 {% block app_actions %}
-  <a href="" class="btn btn-default">Next</a>
-  <a href="" class="btn btn-default">Back</a>
+  <a href="{% url 'lfhazard:map' %}" class="btn btn-default">Go To Map</a>
 {% endblock %}
