@@ -70,6 +70,7 @@ def map(request):
     print "*************"
 
     #******************************************************************************
+    # This part is just to test the map
     # Transform into GeoJSON format
     features = []
     # Sets up the points from the csv file
@@ -103,9 +104,9 @@ def map(request):
         features.append(temp_point)
 
 
-    #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    #$$$$$$$$$$$$$$$$$$$$$$$$ This gets the LS data out $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-    # gets the data from the csv file
+    # gets the data from the LS-475.csv file
     path_LS475 = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/LS-475.csv'
     liqu_data_LS475 = []
     with open(path_LS475, 'rb') as csvfile:
@@ -119,15 +120,152 @@ def map(request):
             DHREF = row[2]
             temp.append(DHREF)
             liqu_data_LS475.append(temp)
-    # Kevin this is where you can decide which field to show with an if statement
+    # gets the dat from the LS-1033.csv file
+    path_LS1033 = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/LS-1033.csv'
+    liqu_data_LS1033 = []
+    with open(path_LS1033, 'rb') as csvfile:
+        data = csv.reader(csvfile)
+        for row in data:
+            temp = []
+            longitude = row[0]
+            temp.append(longitude)
+            latitude = row[1]
+            temp.append(latitude)
+            DHREF = row[2]
+            temp.append(DHREF)
+            liqu_data_LS1033.append(temp)
+    # gets the dat from the LS-2475.csv file
+    path_LS2475 = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/LS-2475.csv'
+    liqu_data_LS2475 = []
+    with open(path_LS2475, 'rb') as csvfile:
+        data = csv.reader(csvfile)
+        for row in data:
+            temp = []
+            longitude = row[0]
+            temp.append(longitude)
+            latitude = row[1]
+            temp.append(latitude)
+            DHREF = row[2]
+            temp.append(DHREF)
+            liqu_data_LS2475.append(temp)
+
+    #$$$$$$$$$$$$$$$$$$$$$$$$ This gets the SSD data out $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    # gets the dat from the SSD-475.csv file
+    path_SSD475 = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/SSD-475.csv'
+    liqu_data_SSD475 = []
+    with open(path_SSD475, 'rb') as csvfile:
+        data = csv.reader(csvfile)
+        for row in data:
+            temp = []
+            longitude = row[0]
+            temp.append(longitude)
+            latitude = row[1]
+            temp.append(latitude)
+            Cetin_percent = row[2]
+            temp.append(Cetin_percent)
+            IandY_percent = row[3]
+            temp.append(IandY_percent)
+            PB_Seismic_Slope_Disp_RandS = row[4]
+            temp.append(PB_Seismic_Slope_Disp_RandS)
+            PB_Seismic_Slope_Disp_RandT = row[5]
+            temp.append(PB_Seismic_Slope_Disp_RandT)
+            liqu_data_SSD475.append(temp)
+    # gets the dat from the SSD-1033.csv file
+    path_SSD1033 = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/SSD-1033.csv'
+    liqu_data_SSD1033 = []
+    with open(path_SSD1033, 'rb') as csvfile:
+        data = csv.reader(csvfile)
+        for row in data:
+            temp = []
+            longitude = row[0]
+            temp.append(longitude)
+            latitude = row[1]
+            temp.append(latitude)
+            Cetin_percent = row[2]
+            temp.append(Cetin_percent)
+            IandY_percent = row[3]
+            temp.append(IandY_percent)
+            PB_Seismic_Slope_Disp_RandS = row[4]
+            temp.append(PB_Seismic_Slope_Disp_RandS)
+            PB_Seismic_Slope_Disp_RandT = row[5]
+            temp.append(PB_Seismic_Slope_Disp_RandT)
+            liqu_data_SSD1033.append(temp)
+    # gets the dat from the SSD-2475.csv file
+    path_SSD2475 = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/SSD-2475.csv'
+    liqu_data_SSD2475 = []
+    with open(path_SSD2475, 'rb') as csvfile:
+        data = csv.reader(csvfile)
+        for row in data:
+            temp = []
+            longitude = row[0]
+            temp.append(longitude)
+            latitude = row[1]
+            temp.append(latitude)
+            Cetin_percent = row[2]
+            temp.append(Cetin_percent)
+            IandY_percent = row[3]
+            temp.append(IandY_percent)
+            PB_Seismic_Slope_Disp_RandS = row[4]
+            temp.append(PB_Seismic_Slope_Disp_RandS)
+            PB_Seismic_Slope_Disp_RandT = row[5]
+            temp.append(PB_Seismic_Slope_Disp_RandT)
+            liqu_data_SSD2475.append(temp)
+
+    #$$$$$$$$$$$$$$$$$$$$$$$$ This gets the LT data out $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    # gets the dat from the LT-475.csv file
+    path_LT475 = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/LT-475.csv'
+    liqu_data_LT475 = []
+    with open(path_LT475, 'rb') as csvfile:
+        data = csv.reader(csvfile)
+        for row in data:
+            temp = []
+            longitude = row[0]
+            temp.append(longitude)
+            latitude = row[1]
+            temp.append(latitude)
+            PB_Nreq_Cetin = row[2]
+            temp.append(PB_Nreq_Cetin)
+            PB_CSRp = row[3]
+            temp.append(PB_CSRp)
+            liqu_data_LT475.append(temp)
+    # gets the dat from the LT-1033.csv file
+    path_LT1033 = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/LT-1033.csv'
+    liqu_data_LT1033 = []
+    with open(path_LT1033, 'rb') as csvfile:
+        data = csv.reader(csvfile)
+        for row in data:
+            temp = []
+            longitude = row[0]
+            temp.append(longitude)
+            latitude = row[1]
+            temp.append(latitude)
+            PB_Nreq_Cetin = row[2]
+            temp.append(PB_Nreq_Cetin)
+            PB_CSRp = row[3]
+            temp.append(PB_CSRp)
+            liqu_data_LT1033.append(temp)
+    # gets the dat from the LT-2475.csv file
+    path_LT2475 = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/LT-2475.csv'
+    liqu_data_LT2475 = []
+    with open(path_LT2475, 'rb') as csvfile:
+        data = csv.reader(csvfile)
+        for row in data:
+            temp = []
+            longitude = row[0]
+            temp.append(longitude)
+            latitude = row[1]
+            temp.append(latitude)
+            PB_Nreq_Cetin = row[2]
+            temp.append(PB_Nreq_Cetin)
+            PB_CSRp = row[3]
+            temp.append(PB_CSRp)
+            liqu_data_LT2475.append(temp)
+
     # This makes the points
-    for r in liqu_data_LS475[1:]:
+    for r in liqu_data_SSD475[1:]:
         temp_long = float(r[0])
         temp_lat = float(r[1])
         temp_coor = [temp_long,temp_lat]
-        print "*************"
-        print temp_coor
-        print "*************"
         temp_point = {
             'type': 'Feature',
             'geometry': {
@@ -136,7 +274,7 @@ def map(request):
             }
         }
 
-        features.append(temp_point)
+        # features.append(temp_point)
 
     #******************************************************************************
 
@@ -173,7 +311,7 @@ def map(request):
     view_options = MVView(
         projection='EPSG:4326',
         center=zoom_pt,
-        zoom=10,
+        zoom=4,
         maxZoom=18,
         minZoom=2
     )
