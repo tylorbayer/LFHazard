@@ -33,7 +33,7 @@ def map(request):
     select_state = SelectInput(display_text='State:',
                             name='select_state',
                             multiple=False,
-                            options=[('Utah', 'Utah'), ('Alaska', 'Alaska')],
+                            options=[('Utah', 'Utah'), ('Alaska', 'Alaska'), ('Idaho', 'Idaho'), ('Montana', 'Montana'), ('Oregon', 'Oregon'), ('South Carolina', 'South Carolina'), ('Connecticut', 'Connecticut'),],
                             initial=['Utah', 'Utah'])
 
     text_input_lat = TextInput(display_text='Latitude',
@@ -47,6 +47,9 @@ def map(request):
                             multiple=False,
                             options=[('2008', 2008), ('2014', 2014)],
                             initial=['2008', 2008])
+    print "*************"
+    print state
+    print "*************"
 
     select_returnPeriod = SelectInput(display_text='Return Period:',
                             name='select_returnPeriod',
@@ -109,6 +112,12 @@ def map(request):
       },
       'features': features
     }
+    #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    path_LS475 = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/LS-475.csv'
+    liqu_data_LS475 = []
+
+
     #******************************************************************************
 
     # this part helps with zooming to the lat and long entered into
@@ -125,7 +134,7 @@ def map(request):
     # Define layer for Map View
     geojson_layer = MVLayer(source='GeoJSON',
                             options=geojson_gages,
-                            legend_title='Provo Stream Gages',
+                            legend_title='Test points',
                             legend_extent=[-111.74, 40.22, -111.67, 40.25])
 
     # Define initial view for Map View
