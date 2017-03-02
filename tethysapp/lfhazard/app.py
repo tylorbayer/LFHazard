@@ -7,12 +7,12 @@ class LiquifactionHazardApp(TethysAppBase):
     Tethys app class for Liquifaction Hazard App.
     """
 
-    name = 'Liquifaction Hazard App'
+    name = 'Liquefaction Hazard App'
     index = 'lfhazard:home'
     icon = 'lfhazard/images/icon.gif'
     package = 'lfhazard'
     root_url = 'lfhazard'
-    color = '#9b59b6'
+    color = '#64db6a'
     description = '"Liquifaction Hazard Lookup"'
     tags = '"Liquifaction", "Geotech"'
     enable_feedback = False

@@ -4,7 +4,7 @@ from .model import SessionMaker, StreamGage
 from tethys_sdk.gizmos import MapView, MVLayer, MVView
 from tethys_sdk.gizmos import TextInput
 from tethys_sdk.gizmos import SelectInput
-
+import csv
 
 @login_required()
 def home(request):
@@ -21,59 +21,6 @@ def map(request):
     """
     Controller for map page.
     """
-    # Create a session
-    session = SessionMaker()
-
-    # Query DB for gage objects
-    gages = session.query(StreamGage).all()
-
-    # Transform into GeoJSON format
-    features = []
-
-    for gage in gages:
-        gage_feature = {
-          'type': 'Feature',
-          'geometry': {
-            'type': 'Point',
-            'coordinates': [gage.longitude, gage.latitude]
-          }
-        }
-
-        features.append(gage_feature)
-
-    geojson_gages = {
-      'type': 'FeatureCollection',
-      'crs': {
-        'type': 'name',
-        'properties': {
-          'name': 'EPSG:4326'
-        }
-      },
-      'features': features
-    }
-
-    # Define layer for Map View
-    geojson_layer = MVLayer(source='GeoJSON',
-                            options=geojson_gages,
-                            legend_title='Provo Stream Gages',
-                            legend_extent=[-111.74, 40.22, -111.67, 40.25])
-
-    # Define initial view for Map View
-    view_options = MVView(
-        projection='EPSG:4326',
-        center=[-111.70, 40.24],
-        zoom=13,
-        maxZoom=18,
-        minZoom=2
-    )
-
-    # Configure the map
-    map_options = MapView(height='500px',
-                          width='100%',
-                          layers=[geojson_layer],
-                          view=view_options,
-                          basemap='OpenStreetMap',
-                          legend=True)
 
     # Default value for name
     state = ''
@@ -112,11 +59,92 @@ def map(request):
        lat = request.POST['lat-input']
        lon = request.POST['lon-input']
 
+
     if request.POST and 'select_state' and 'select_modelYear' and 'select_returnPeriod' in request.POST:
        state = request.POST['select_state']
        modelYear = request.POST['select_modelYear']
        returnPeriod = request.POST['select_returnPeriod']
 
+    #******************************************************************************
+    # Transform into GeoJSON format
+    features = []
+
+    # Sets up the points from the csv file
+    path = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/Test.csv'
+    # path = '/static/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/Test.csv'
+    liqu_data = []
+
+    # This opens the csv file, extracts the data and puts it in a array.
+    with open(path, 'rb') as csvfile:
+        data = csv.reader(csvfile)
+        for row in data:
+            temp = []
+            longitude = row[0]
+            temp.append(longitude)
+            latitude = row[1]
+            temp.append(latitude)
+            value = row[2]
+            temp.append(value)
+            liqu_data.append(temp)
+    for r in liqu_data[1:]:
+        temp_long = float(r[0])
+        temp_lat = float(r[1])
+        temp_coor = [temp_lat,temp_long]
+        temp_point = {
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': temp_coor
+            }
+        }
+        features.append(temp_point)
+
+    geojson_gages = {
+      'type': 'FeatureCollection',
+      'crs': {
+        'type': 'name',
+        'properties': {
+          'name': 'EPSG:4326'
+        }
+      },
+      'features': features
+    }
+    #******************************************************************************
+
+    # this part helps with zooming to the lat and long entered into
+
+    if str(lon)!='' and str(lat)!='':
+        temp_lon = float(lon)
+        temp_lat = float(lat)
+        zoom_pt = [temp_lon,temp_lat]
+    else:
+        zoom_pt = [-111.70, 40.24]
+
+
+    #================================================================
+    # Define layer for Map View
+    geojson_layer = MVLayer(source='GeoJSON',
+                            options=geojson_gages,
+                            legend_title='Provo Stream Gages',
+                            legend_extent=[-111.74, 40.22, -111.67, 40.25])
+
+    # Define initial view for Map View
+    view_options = MVView(
+        projection='EPSG:4326',
+        center=zoom_pt,
+        zoom=10,
+        maxZoom=18,
+        minZoom=2
+    )
+
+    # Configure the map
+    map_options = MapView(height='500px',
+                          width='100%',
+                          layers=[geojson_layer],
+                          view=view_options,
+                          basemap='OpenStreetMap',
+                          legend=True)
+    #================================================================
     # Pass variables to the template via the context dictionary
     context = {'map_options': map_options,
                'state': state,
@@ -175,6 +203,7 @@ def echo_name(request):
        lat = request.POST['lat-input']
        lon = request.POST['lon-input']
 
+
     if request.POST and 'select_state' and 'select_modelYear' and 'select_returnPeriod' in request.POST:
        state = request.POST['select_state']
        modelYear = request.POST['select_modelYear']
@@ -191,5 +220,7 @@ def echo_name(request):
                'text_input_lon': text_input_lon,
                'select_modelYear': select_modelYear,
                'select_returnPeriod': select_returnPeriod}
+
+    #This creates the
 
     return render(request, 'lfhazard/echo_name.html', context)
