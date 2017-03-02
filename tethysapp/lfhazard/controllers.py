@@ -47,9 +47,6 @@ def map(request):
                             multiple=False,
                             options=[('2008', 2008), ('2014', 2014)],
                             initial=['2008', 2008])
-    print "*************"
-    print state
-    print "*************"
 
     select_returnPeriod = SelectInput(display_text='Return Period:',
                             name='select_returnPeriod',
@@ -68,10 +65,13 @@ def map(request):
        modelYear = request.POST['select_modelYear']
        returnPeriod = request.POST['select_returnPeriod']
 
+    print "*************"
+    print returnPeriod
+    print "*************"
+
     #******************************************************************************
     # Transform into GeoJSON format
     features = []
-
     # Sets up the points from the csv file
     path = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/Test.csv'
     # path = '/static/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/Test.csv'
@@ -89,7 +89,7 @@ def map(request):
             value = row[2]
             temp.append(value)
             liqu_data.append(temp)
-    for r in liqu_data[1:]:
+    for r in liqu_data[1:]: # the [1:] skips the first row
         temp_long = float(r[0])
         temp_lat = float(r[1])
         temp_coor = [temp_lat,temp_long]
@@ -102,21 +102,41 @@ def map(request):
         }
         features.append(temp_point)
 
-    geojson_gages = {
-      'type': 'FeatureCollection',
-      'crs': {
-        'type': 'name',
-        'properties': {
-          'name': 'EPSG:4326'
-        }
-      },
-      'features': features
-    }
+
     #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
+    # gets the data from the csv file
     path_LS475 = '/home/student/tethysdev/tethysapp-lfhazard/tethysapp/lfhazard/public/csv/LS-475.csv'
     liqu_data_LS475 = []
+    with open(path_LS475, 'rb') as csvfile:
+        data = csv.reader(csvfile)
+        for row in data:
+            temp = []
+            longitude = row[0]
+            temp.append(longitude)
+            latitude = row[1]
+            temp.append(latitude)
+            DHREF = row[2]
+            temp.append(DHREF)
+            liqu_data_LS475.append(temp)
+    # Kevin this is where you can decide which field to show with an if statement
+    # This makes the points
+    for r in liqu_data_LS475[1:]:
+        temp_long = float(r[0])
+        temp_lat = float(r[1])
+        temp_coor = [temp_long,temp_lat]
+        print "*************"
+        print temp_coor
+        print "*************"
+        temp_point = {
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': temp_coor
+            }
+        }
 
+        features.append(temp_point)
 
     #******************************************************************************
 
@@ -131,9 +151,21 @@ def map(request):
 
 
     #================================================================
+
+    geojson_objects = {
+      'type': 'FeatureCollection',
+      'crs': {
+        'type': 'name',
+        'properties': {
+          'name': 'EPSG:4326'
+        }
+      },
+      'features': features
+    }
+
     # Define layer for Map View
     geojson_layer = MVLayer(source='GeoJSON',
-                            options=geojson_gages,
+                            options=geojson_objects,
                             legend_title='Test points',
                             legend_extent=[-111.74, 40.22, -111.67, 40.25])
 
