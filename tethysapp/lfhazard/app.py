@@ -31,9 +31,9 @@ class LiquifactionHazardApp(TethysAppBase):
                     UrlMap(name='map',
                            url='lfhazard/map',
                            controller='lfhazard.controllers.map'),
-                    UrlMap(name='echo_name',
-                           url='lfhazard/echo-name',
-                           controller='lfhazard.controllers.echo_name'),
+                    UrlMap(name='documentation',
+                           url='lfhazard/documentation',
+                           controller='lfhazard.controllers.documentation')
         )
 
         return url_maps
