@@ -72,6 +72,60 @@ def map(request):
     print lat + " " + lon
     print "*************"
 
+<<<<<<< HEAD
+
+    # # this part helps with zooming to the lat and long entered into
+    #
+    # if str(lon)!='' and str(lat)!='':
+    #     temp_lon = float(lon)
+    #     temp_lat = float(lat)
+    #     zoom_pt = [temp_lon,temp_lat]
+    #     inProj = Proj(init='epsg:4326')
+    #     outProj = Proj(init='epsg:3857')
+    #     zoom_pt = transform(inProj, outProj, zoom_pt[0], zoom_pt[1])
+    # else:
+    #     zoom_pt = [-111.70, 40.24]
+    #     inProj = Proj(init='epsg:4326')
+    #     outProj = Proj(init='epsg:3857')
+    #     zoom_pt = transform(inProj, outProj, zoom_pt[0], zoom_pt[1])
+    #
+    #
+    # #================================================================
+    #
+    # geojson_objects = {
+    #   'type': 'FeatureCollection',
+    #   'crs': {
+    #     'type': 'name',
+    #     'properties': {
+    #       'name': 'EPSG:3857'
+    #     }
+    #   },
+    #   'features': features
+    # }
+    #
+    # # Define layer for Map View
+    # # geojson_layer = MVLayer(source='GeoJSON',
+    # #                         options=geojson_objects,
+    # #                         legend_title='Test points',
+    # #                         legend_extent=[-111.74, 40.22, -111.67, 40.25])
+    #
+    # # Define initial view for Map View
+    # view_options = MVView(
+    #     projection='EPSG:3857',
+    #     center=zoom_pt,
+    #     zoom=10,
+    #     maxZoom=18,
+    #     minZoom=2
+    # )
+    #
+    # # Configure the map
+    # map_options = MapView(height='500px',
+    #                       width='100%',
+    #                       view=view_options,
+    #                       basemap='OpenStreetMap',
+    #                       legend=True)
+    # #================================================================
+=======
 
     # this part helps with zooming to the lat and long entered into
 
@@ -124,9 +178,9 @@ def map(request):
                           basemap='OpenStreetMap',
                           legend=True)
     #================================================================
+>>>>>>> 12304be2884451a10f5d09ad8341f90ff80aaf7f
     # Pass variables to the template via the context dictionary
-    context = {'map_options': map_options,
-               'state': state,
+    context = {'state': state,
                'lat': lat,
                'lon': lon,
                'modelYear': modelYear,
