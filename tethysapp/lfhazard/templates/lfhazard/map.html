@@ -21,35 +21,21 @@
     <h1>Lat: {{ lat }}  Lon: {{ lon }}</h1>
     <h2>Model Year: {{ modelYear }}</h2>
     <h3>Return Period: {{ returnPeriod }}</h3>
-    <input type="hidden" id="state" name="state" value="{{ state }}">
-    <input type="hidden" id="lat" name="lat" value="{{ lat }}">
-    <input type="hidden" id="lon" name="lon" value="{{ lon }}">
-    <input type="hidden" id="modelYear" name="modelYear" value="{{ modelYear }}">
-    <input type="hidden" id="returnPeriod" name="returnPeriod" value="{{ returnPeriod }}">
   {% endif %}
 {% endblock %}
 
 {% block app_content %}
 
-<<<<<<< HEAD
     <h1>Liquifaction Hazard Map</h1>
     {% gizmo map_view map_options %}
     <div id="map" class="map"></div>
-=======
 
 
 
->>>>>>> 12304be2884451a10f5d09ad8341f90ff80aaf7f
     <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
     </div>
-<<<<<<< HEAD
-
-=======
-    <h1>Liquifaction Hazard Map</h1>
-    {% gizmo map_view map_options %}
->>>>>>> 12304be2884451a10f5d09ad8341f90ff80aaf7f
 
 
 {% endblock %}
@@ -61,4 +47,11 @@
 {% block scripts %}
   {{ block.super }}
   <script src="{% static 'lfhazard/js/map.js' %}" type="text/javascript"></script>
+  <script>
+      var state = "{{ state }}";
+      var lat = "{{ lat }}";
+      var lon = "{{ lon }}";
+      var modelYear = "{{ modelYear }}";
+      var returnPeriod = "{{ returnPeriod }}";
+  </script>
 {% endblock %}
