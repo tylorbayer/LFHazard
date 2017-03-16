@@ -11,6 +11,12 @@ var overlay;
 $( document ).ready(function() {
 console.log( "ready!" );
     map_gizmo = TETHYS_MAP_VIEW.getMap();
+    closer.onclick = function() {
+        overlay.setPosition(undefined);
+        closer.blur();
+        return false;
+      };
+
      overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
         element: container,
         autoPan: true,
@@ -18,11 +24,11 @@ console.log( "ready!" );
           duration: 250
         }
       }));
+
     map_gizmo.overlays= [overlay]
     map_gizmo.on('singleclick', function(evt) {
 //        alert("123");
         var coordinate = evt.coordinate;
-
         var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
             coordinate, 'EPSG:3857', 'EPSG:4326'));
         console.log(coordinate);
@@ -31,11 +37,6 @@ console.log( "ready!" );
 
         overlay.setPosition(coordinate);
       });
-    closer.onclick = function() {
-        overlay.setPosition(undefined);
-        closer.blur();
-        return false;
-      };
 });
 
 
