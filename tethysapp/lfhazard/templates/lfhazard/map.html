@@ -18,30 +18,21 @@
     <h1>State: {{ state }}</h1>
     <h1>Lat: {{ lat }}  Lon: {{ lon }}</h1>
     <h2>Model Year: {{ modelYear }}</h2>
-    <h3>Return Period: {{ returnPeriod }}
+    <h3>Return Period: {{ returnPeriod }}</h3>
   {% endif %}
 {% endblock %}
 
 {% block app_content %}
-  <h1>Liquifaction Hazard Map</h1>
 
-  {% gizmo map_view map_options %}
-    <!--<script>-->
-         <!--var projection = ol.proj.get('EPSG:3857');-->
-            <!--var states = new ol.layer.Vector({-->
-                <!--source: new ol.source.Vector({-->
-                    <!--projection: projection,-->
-                    <!--url: '/static/lfhazard/kml/states.kml',-->
-                    <!--format: new ol.format.KML()-->
-                <!--})-->
-            <!--})-->
-         <!--var map = new ol.Map({-->
-            <!--layers: [-->
-            <!--new ol.layer.Tile({-->
-            <!--source: new ol.source.OSM()-->
-            <!--}),states-->
 
-    <!--</script>-->
+
+    <div id="popup" class="ol-popup">
+      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+      <div id="popup-content"></div>
+    </div>
+    <h1>Liquifaction Hazard Map</h1>
+    {% gizmo map_view map_options %}
+
 {% endblock %}
 
 {% block app_actions %}
