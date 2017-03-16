@@ -142,22 +142,8 @@ def map(request):
 
 @login_required
 def documentation(request):
-    """
-    Controller that will echo the name provided by the user via a form.
-    """
-    # Default value for name
-    name = ''
-
-    # Define Gizmo Options
-    text_input_options = TextInput(display_text='Enter Name',
-                                   name='name-input')
-
-    # Check form data
-    if request.POST and 'name-input' in request.POST:
-       name = request.POST['name-input']
 
     # Create template context dictionary
-    context = {'name': name,
-               'text_input_options': text_input_options}
+    context = {}
 
     return render(request, 'lfhazard/documentation.html', context)
